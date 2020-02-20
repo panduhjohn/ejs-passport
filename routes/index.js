@@ -1,20 +1,92 @@
-var express = require('express');
-const fetch = require('node-fetch')
-var router = express.Router();
+const express = require('express');
+const fetch = require('node-fetch');
+const router = express.Router();
+const { check, validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs');
+const passport = require('passport');
+
+const User = require('../models/Users');
+require('../lib/passport');
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
-    res.render('index');
+router.get('/', (req, res) => {
+    res.render('main/index');
 });
+
 router.get('/login', (req, res) => {
     res.render('main/login');
 });
+
 router.get('/register', (req, res) => {
     res.render('main/register');
 });
-router.get('/test', (req, res) => {
-    res.render('test');
+
+router.post(
+    '/register',
+    [
+        check('name', 'Name is required')
+            .not()
+            .isEmpty(),
+        check('email', 'Include a valid email').isEmail(),
+        check('password', 'Include a valid password').isLength({ min: 3 })
+    ],
+    (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            console.log(errors);
+            return res.render('register', {
+                errors: 'All inputs must be filled'
+            });
+        }
+        const { name, email, password } = req.body;
+        User.findOne({ email }).then(user => {
+            if (user) {
+                return console.log('User Exists');
+            } else {
+                const user = new User();
+                const salt = bcrypt.genSaltSync(10);
+                const hash = bcrypt.hashSync(req.body.password, salt);
+
+                user.name = name;
+                user.email = email;
+                user.password = hash;
+
+                user.save()
+                    .then(user => {
+                        // return res
+                        //     .status(200)
+                        //     .json({ message: 'User Created', user });
+                        return req.login(user, err => {
+                            if (err) {
+                                return res
+                                    .status(500)
+                                    .json({ message: 'Server Error', err });
+                            } else {
+                                return res.redirect('/registered');
+                            }
+                        });
+                    })
+                    .catch(err => console.log(err));
+            }
+        });
+    }
+);
+
+router.get('/registered', (req, res) => {
+    if (req.isAuthenticated()) {
+        return res.render('main/registered');
+    }
+    return res.redirect('/register');
 });
+
+router.post(
+    '/login',
+    passport.authenticate('local-login', {
+        successRedirect: '/',
+        failureRedirect: '/login',
+        failureFlash: true
+    })
+);
 
 router.get('/movies', (req, res) => {
     const key = process.env.MOVIE_API;
@@ -44,5 +116,9 @@ router.get('/random', (req, res) => {
         })
         .catch(err => console.log('Error in Random', err));
 });
+
+router.get('/*', (req, res) => {
+    res.render('main/404')
+})
 
 module.exports = router;
