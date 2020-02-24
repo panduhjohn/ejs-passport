@@ -21,8 +21,7 @@ router.get('/register', (req, res) => {
     res.render('main/register');
 });
 
-router.post(
-    '/register',
+router.post('/register',
     [
         check('name', 'Name is required')
             .not()
@@ -34,7 +33,7 @@ router.post(
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             console.log(errors);
-            return res.render('register', {
+            return res.render('main/register', {
                 errors: 'All inputs must be filled'
             });
         }
@@ -62,7 +61,7 @@ router.post(
                                     .status(500)
                                     .json({ message: 'Server Error', err });
                             } else {
-                                return res.redirect('/registered');
+                                return res.redirect('/');
                             }
                         });
                     })
@@ -79,16 +78,36 @@ router.get('/registered', (req, res) => {
     return res.redirect('/register');
 });
 
-router.post(
-    '/login',
-    passport.authenticate('local-login', {
+router.post('/login',passport.authenticate('local-login', {
         successRedirect: '/',
         failureRedirect: '/login',
         failureFlash: true
     })
+    
 );
 
+router.get('/logout', (req, res) => {
+    // console.log(req.user);
+    if (req.user === undefined) {
+        req.flash('successMessage', 'Nobody to log out');
+        return res.redirect('/');
+    }
+    req.logout();
+    req.flash('successMessage', 'You are now logged out');
+    return res.redirect('/');
+});
+
+router.get('/options', (req, res) => {
+    if (req.user === undefined) {
+        return res.render('main/404');
+    }
+    res.render('main/options')
+});
+
 router.get('/movies', (req, res) => {
+    if (req.user === undefined) {
+        return res.render('main/404');
+    }
     const key = process.env.MOVIE_API;
     const url = `https://api.themoviedb.org/3/movie/popular?api_key=${key}&language=en-US&page=1`;
     const img = 'https://image.tmdb.org/t/p/w500';
@@ -102,6 +121,9 @@ router.get('/movies', (req, res) => {
 });
 
 router.get('/random', (req, res) => {
+    if (req.user === undefined) {
+        return res.render('main/404');
+    }
     const url = 'https://randomuser.me/api/?results=20';
     fetch(url)
         .then(res => res.json())
@@ -116,6 +138,8 @@ router.get('/random', (req, res) => {
         })
         .catch(err => console.log('Error in Random', err));
 });
+
+
 
 router.get('/*', (req, res) => {
     res.render('main/404')

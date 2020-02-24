@@ -72,8 +72,117 @@ input, select, textarea {
 	appearance: none;
 }
 
+.heading { 
+    height: 90px;
+    width: 100%;
+    background-color: #1D232A;
+    color: #989B9D;
+    text-align: center;
+    padding-top: 30px;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+}
+
 #love {
-    color: red;
+    color: rgb(160, 6, 207);
+}
+
+#name {
+    width: 300px;
+    color: black;
+}
+
+#email {
+    width: 300px;
+    color: black;
+}
+
+#password {
+    width: 300px;    
+    color: black;
+}
+
+#name-label {
+    color:  #989B9D;
+}
+#email-label {
+    color:  #989B9D;
+}
+#password-label {
+    color:  #989B9D;
+}
+
+#submit-button {
+    margin-top: 20px;
+
+}
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 270px;
+}
+
+/* random people */
+.randomContainer {
+    border: 2px solid black;
+    background-color: rgb(37, 36, 36);
+    padding: 30px;
+    margin: 10px;
+    margin-bottom: 10px;
+    width: 200px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    font-size: 1.3rem;
+    color: white;
+}
+
+.random {
+    background-color: red;
+    border-radius: 50%;
+    height: 200px;
+    margin-bottom: 30px;
+}
+
+p {
+    text-align: center;
+}
+
+/* movies */
+.movieContainer {
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    font-size: 0.9em;
+    width: 425px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.movieInfo {
+    margin: 10px;
+}
+
+.movies {
+    height: 100%;
+    width: 200px;
+}
+
+.movieText {
+    font-size: 10px;
+}
+
+#movie-title {
+    color: black;
+    justify-content: center;
+}
+
+#date-movie {
+    height: 495px;
 }
 
 /* Basic */
@@ -4000,4 +4109,5 @@ input, select, textarea {
 
 	body.is-mobile.landing #footer {
 		background-color: #1d242a;
-	}
+    }
+    

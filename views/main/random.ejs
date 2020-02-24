@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <%- include('../partials/head') %>
+        <%- include('../partials/header') %>
         <title>Random Users</title>
     </head>
     <body>
@@ -11,6 +12,7 @@
                 <img class="random" src="<%= `${large}` %>" />
                 <p><%= `${first} ${last}` %></p>
             </div>
-        <% }) %> <%- include('../partials/footer') %>
+        <% }) %> 
+        <%- include('../partials/footer') %>
     </body>
 </html>
