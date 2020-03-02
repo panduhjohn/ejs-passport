@@ -21,7 +21,8 @@ router.get('/register', (req, res) => {
     res.render('main/register');
 });
 
-router.post('/register',
+router.post(
+    '/register',
     [
         check('name', 'Name is required')
             .not()
@@ -34,7 +35,7 @@ router.post('/register',
         if (!errors.isEmpty()) {
             console.log(errors);
             return res.render('main/register', {
-                errors: 'All inputs must be filled'
+                errors: ['Name', 'Email', 'Password']
             });
         }
         const { name, email, password } = req.body;
@@ -78,12 +79,13 @@ router.get('/registered', (req, res) => {
     return res.redirect('/register');
 });
 
-router.post('/login',passport.authenticate('local-login', {
+router.post(
+    '/login',
+    passport.authenticate('local-login', {
         successRedirect: '/',
         failureRedirect: '/login',
         failureFlash: true
     })
-    
 );
 
 router.get('/logout', (req, res) => {
@@ -101,7 +103,7 @@ router.get('/options', (req, res) => {
     if (req.user === undefined) {
         return res.render('main/404');
     }
-    res.render('main/options')
+    res.render('main/options');
 });
 
 router.get('/movies', (req, res) => {
@@ -139,10 +141,8 @@ router.get('/random', (req, res) => {
         .catch(err => console.log('Error in Random', err));
 });
 
-
-
 router.get('/*', (req, res) => {
-    res.render('main/404')
-})
+    res.render('main/404');
+});
 
 module.exports = router;

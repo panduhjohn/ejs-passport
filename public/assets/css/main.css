@@ -84,7 +84,7 @@ input, select, textarea {
 }
 
 #love {
-    color: rgb(160, 6, 207);
+    color: red;
 }
 
 #name {
@@ -129,6 +129,7 @@ input, select, textarea {
 .randomContainer {
     border: 2px solid black;
     background-color: rgb(37, 36, 36);
+    
     padding: 30px;
     margin: 10px;
     margin-bottom: 10px;
@@ -152,13 +153,22 @@ p {
     text-align: center;
 }
 
+
 /* movies */
+.wraptest, .randomtest {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100vw;
+    
+}
+
 .movieContainer {
     margin: 20px;
     display: flex;
     flex-direction: row;
     font-size: 0.9em;
-    width: 425px;
+    width: 525px;
     border: 1px solid black;
     background-color: white;
 }
@@ -183,6 +193,14 @@ p {
 
 #date-movie {
     height: 495px;
+}
+
+#options-card {
+    display: flex;
+}
+
+#options-text {
+    padding-bottom: 30px;
 }
 
 /* Basic */
@@ -2930,7 +2948,7 @@ p {
 		}
 
 		.wrapper.style1 {
-			background-color: #21b2a6;
+			background-color: rgb(92, 38, 153);
 			color: #c8ece9;
 		}
 
@@ -3464,7 +3482,7 @@ p {
 		-ms-transition: -ms-transform 0.5s ease;
 		transition: transform 0.5s ease;
 		-webkit-overflow-scrolling: touch;
-		background: #21b2a6;
+		background: rgb(92, 38, 153);
 		color: #ffffff;
 		height: 100%;
 		max-width: 80%;

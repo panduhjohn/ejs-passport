@@ -8,24 +8,22 @@
     <div class="heading">Options</div>
 
     <p>Logged in as <span id='love'><%= user.name %></span> | <a href="/logout">Logout</a> </p>
-    <div class="card-deck">
-  <div class="card">
-    <a href="/random"><img src="images/old.jpg" class="card-img-top" alt="..."></a>
-    <div class="card-body">
-      <h5 class="card-title"></h5>
-      <p class="card-text">Click here to find hot random singles near you!</p>
-      
+    <div class="card-deck" id='options-card'>
+        <div class="card">
+            <a href="/random"><img src="images/old.jpg" class="card-img-top" alt="..."></a>
+            <div class="card-body">
+            <h5 class="card-title"></h5>
+            <p class="card-text">Click here to find hot random singles near you!</p>
+            </div>
+        </div>
+        <div class="card">
+            <a href="/movies"><img src="images/theater1.jpg" class="card-img-top" id='date-movie' alt="..."></a>
+            <div class="card-body">
+            <h5 class="card-title">Movies</h5>
+            <p class="card-text" id='options-text'>Click here to find a overpriced movie, uncomfortable seating, along with stale popcorn.</p> 
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="card">
-    <a href="/movies"><img src="images/theater1.jpg" class="card-img-top" id='date-movie' alt="..."></a>
-    <div class="card-body">
-      <h5 class="card-title">Movies</h5>
-      <p class="card-text">Click here to find a overpriced movie, uncomfortable seating, along with stale popcorn.</p>
-     
-    </div>
-  </div>
-</div>
    
        
     <%- include('../partials/footer') %>

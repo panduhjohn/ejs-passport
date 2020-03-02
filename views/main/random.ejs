@@ -7,12 +7,16 @@
     </head>
     <body>
         <header>Random Users</header>
-        <% sortUsers.forEach(({name: {first, last}, picture: {large}}) => { %>
-            <div class="randomContainer">
-                <img class="random" src="<%= `${large}` %>" />
-                <p><%= `${first} ${last}` %></p>
-            </div>
-        <% }) %> 
+        <div class="randomtest">
+            <% sortUsers.forEach(({name: {first, last}, picture: {large}}) => { %>
+                <div class="randomContainer">
+                    <img class="random" src="<%= `${large}` %>" />
+                    <p><%= `${first} ${last}` %></p>
+                </div>
+            <% }) %> 
+
+
+        </div>
         <%- include('../partials/footer') %>
     </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Spectral by HTML5 UP</title>
+		<title>Binder</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -14,19 +14,23 @@
 
 				<!-- Header -->
 					<header id="header" class="alt">
-						<h1><a href="/">Sinder</a></h1>
+						<h1><a href="/">Binder</a></h1>
 						<nav id="nav">
 							<ul>
 								<li class="special">
 									<a href="#menu" class="menuToggle"><span>Menu</span></a>
 									<div id="menu">
 										<ul>
-                                            <li><a href="/register">Register</a></li>
-											<li><a href="/login">Log In</a></li>
-											<li><a href="/options">Options</a></li>
-											<li><a href="/movies">Movies</a></li> 
+                                            <% if(user) { %>
+                                            <li><a href="/options">Options</a></li>
+                                            <li><a href="/movies">Movies</a></li> 
 											<li><a href="/random">Randoms</a></li> 
 											<li><a href="/logout">Logout</a></li> 
+                                            <% } %>
+                                            <% if(!user) { %>
+                                            <li><a href="/register">Register</a></li>
+											<li><a href="/login">Log In</a></li>
+											<% } %>
 										</ul>
 									</div>
 								</li>
@@ -40,7 +44,7 @@
                             <% if(user) { %>
                             <p>Welcome <span id='love'> <%= user.name %> </span> </p> 
                             <% } %>
-							<h2>Sinder</h2>
+							<h2>Binder</h2>
 							<p>Start a new relationship<br />
 							or get some new-new<br />
 							</p>
@@ -52,15 +56,15 @@
 					<section id="one" class="wrapper style1 special">
 						<div class="inner">
 							<header class="major">
-								<h2>Meet your date, fall in <span id='love'>"love"</span>, pump out babies</h2>
+								<h2>Meet your date, fall in <span id='love'>"love"</span>, ruin your life!</h2>
 								<p>In this day and age we just don't have time to meet a partner<br />
-								We do all the heavy lifting for you, all you have to do is show up and not be boring</p>
+								We do all the heavy lifting for you, all you have to do is show up and not be boring.</p>
 							</header>
 							<ul class="icons major">
 								<li><span class="icon fa-handshake major style1"><span class="label">Lorem</span></span></li>
 								<li><span class="icon fa-heart major style2"><span class="label">Ipsum</span></span></li>
                                 <!-- <li><span class="icon solid fa-code major style3"><span class="label">Dolor</span></span></li> -->
-                                <li><span class="icon solid fa-baby-carriage major style3"><span class="label">Dolor</span></span></li>
+                                <li><span class="icon solid fas fa-skull-crossbones major style3"><span class="label">Dolor</span></span></li>
                                 <!-- <li><span class="fas fa-baby-carriage"><span class="label">Dolor</span></span></li> -->
                                 
 							</ul>

@@ -6,15 +6,19 @@
     </head>
     <body>
         <header>Movies Now Playing</header>
-        <% data.results.forEach(({ title, overview, poster_path }) => {%>
-        <div class="movieContainer">
-            <img class="movies" src=<%=`${img}${poster_path}`%>>
-            <div class="movieInfo">
-                <h5 id='movie-title'><%= `${title}` %></h5>
-                <p class="movieText"><%= `${overview}` %></p>
+        <div class='wraptest'>
+            <% data.results.forEach(({ title, overview, poster_path }) => {%>
+
+                <div class="movieContainer">
+                    <img class="movies" src=<%=`${img}${poster_path}`%>>
+                    <div class="movieInfo">
+                        <h5 id='movie-title'><%= `${title}` %></h5>
+                        <p class="movieText"><%= `${overview}` %></p>
+                    </div>
+                </div>
+
+                <%}) %> 
             </div>
-        </div>
-        <%}) %> 
         <%- include('../partials/footer') %>
         <%- include('../partials/scripts') %>
     </body>
